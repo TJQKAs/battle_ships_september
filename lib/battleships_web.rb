@@ -10,7 +10,7 @@ class BattleshipsWeb < Sinatra::Base
   get '/newgame' do
     "What's your name?"
     @visitor = params[:name]
-# erb :player1
+erb :player1
   end
 
   get '/add' do
