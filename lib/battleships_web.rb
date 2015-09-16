@@ -12,14 +12,17 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   post '/player_registered' do
-    redirect '/no-name' if params[:name] == ""
+    redirect '/no_name' if params[:name] == ""
     @player_1 = params[:name]
     erb :player_registered
   end
 
-  get '/no-name' do
+  get '/no_name' do
     erb :no_name
   end
+
+
+
 
   # get '/newgame' do
   #   "What's your name?"
@@ -31,12 +34,12 @@ class BattleshipsWeb < Sinatra::Base
   #   end
   # end
 
-  get '/add' do
-    number_1 = params[:number_1]
-    number_2 = params[:number_2]
-    @result = Calculator.add(number_1, number_2)
-    erb :result
-  end
+  # get '/add' do
+  #   number_1 = params[:number_1]
+  #   number_2 = params[:number_2]
+  #   @result = Calculator.add(number_1, number_2)
+  #   erb :result
+  # end
 
 # get '/new_game' do
 #   erb :new_game
