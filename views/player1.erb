@@ -1,13 +1,15 @@
 <div style='border: 3px dashed red'>
+
+  <p>What's your name?</p>
+  <form action='/newgame' method="post">
+    <input type="text" name="name">
+    <input type="submit" value="Submit">
+  </form>
+
   <% if @visitor %>
-    Hello, <%= @visitor %> are you ready to play Battleships? 
-  <% else %>
-    <form action='/newgame'>
-      My name is <%= @name %>.
-      What's your name?
-      <input type="text" name="name">
-      <input type="submit" value="Submit">
-    </form>
+    Hello, <%= @visitor %> are you ready to play Battleships?
+    <%else%>
+
   <% end %>
   <img src='https://upload.wikimedia.org/wikipedia/commons/7/7d/Peresvet1901.jpg'>
 </div>
