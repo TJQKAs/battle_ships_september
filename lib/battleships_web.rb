@@ -38,8 +38,15 @@ class BattleshipsWeb < Sinatra::Base
      erb :place
    end
 
+  get '/fire' do
+
+    @shoot = params[:hit].to_sym if params[:hit] != nil
+    $player.board.shoot_at(@shoot) if params[:hit] != nil
 
 
+
+    erb :fire
+  end
 
   # get '/add' do
   #   number_1 = params[:number_1] = 33

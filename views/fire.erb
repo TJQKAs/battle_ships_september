@@ -1,0 +1,28 @@
+<body>
+<section style="float: left; width: 500px; height: 500px">
+  <% $player.board.grid.each do |key, value| %>
+    <% unless value.hit?%>
+      <div style="width:48px; height:48px; background-color: blue; border: 1px dotted red; float:left">
+        <%= key %>
+      </div>
+    <% else %>
+      <div style="width:48px; height:48px; background-color: green; border: 1px dotted red; float:left">
+      <%= key %>
+      </div>
+    <%end%>
+  <%end%>
+</section>
+
+<aside style='padding-left: 15px; float: left;'>
+
+  <form action='/fire' method='get'>
+    Specify the coords of fire
+    <input type='text' name='hit' required>
+    <input type='submit' value='Fire'>
+  </form>
+
+
+
+</aside>
+
+</body>
