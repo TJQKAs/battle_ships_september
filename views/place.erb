@@ -1,14 +1,43 @@
-
-<section style="float: left; width: 500px; height: 500px">
-<% @board.grid.each do |key, value| %>
-<% if value.hit? == false%>
-<div style="width:48px; height:48px; background-color: blue; border: 1px dotted red; float:left">
-<% "#{key}" %>
-</div>
-<%end%>
-<%end%>
-
-
-
-
-</section>
+<body>
+  <section style="float: left; width: 500px; height: 500px">
+    <% $player.board.grid.each do |key, value| %>
+      <% if value.content.kind_of? Water%>
+        <div style="width:48px; height:48px; background-color: blue; border: 1px dotted red; float:left">
+          <% "#{key}" %>
+        </div>
+      <% else %>
+        <div style="width:48px; height:48px; background-color: green; border: 1px dotted red; float:left">
+        <% "#{key}" %>
+        </div>
+      <%end%>
+    <%end%>
+  </section>
+  <aside style='padding-left: 10px; float: left;'>
+    <% unless ships.counter == 2 %>
+      <% if @ship1_position == nil %>
+        <form action='/board' method='get'>
+          Place Ship 1
+          <input type='text' name='place_ship1' required>
+          <input type='radio' name='orientation1' value='vertically'>Vertically
+          <input type='radio' name='orientation1' value='horizontally'>Horizontally
+          <input type='submit' value='Place Ship'>
+        </form>
+      <% else %>
+        <p>Ship Placed</p>
+      <% end %>
+      <% if @ship2_position == nil %>
+      <form action='/board' method='get'>
+        Place Ship 2
+        <input type='text' name='place_ship2' required>
+        <input type='radio' name='orientation2' value='vertically'>Vertically
+        <input type='radio' name='orientation2' value='horizontally'>Horizontally
+        <input type='submit' value='Place Ship'>
+      </form>
+      <% else %>
+        <p>Ship Placed</p>
+      <% end %>
+    <% else %>
+      puts a button to link to firing player_registered
+    <% end %>
+  </aside>
+</body>

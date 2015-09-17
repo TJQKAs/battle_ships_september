@@ -6,15 +6,16 @@ require_relative '../game_setup'
 class BattleshipsWeb < Sinatra::Base
   set :views, proc {File.join(root, '..', 'views')}
 
-  GAME = Game.new
+  $game = Game.new
+  $player = Player.new
 
   get '/' do
     erb :index
   end
 
   post '/player_registered' do
-    redirect '/no_name' if params[:name] == ""
-    @player_1 = params[:name]
+    @player_1_name = params[:name]
+    $player.name = @player_1_name
     erb :player_registered
   end
 
@@ -25,10 +26,15 @@ class BattleshipsWeb < Sinatra::Base
 
 
   get '/board' do
-     @board = Board.new(Cell)
-     @ship = Ship.new(5)
-     @ship = @board.place(@ship, :E5, :horizontally)
-     @printed_board = session[:board]
+     $player.board = Board.new(Cell) if $player.board == nil
+     @ship1 = Ship.new(5)
+     @ship2 = Ship.new(5)
+     $player.board.place(@ship1, params[:place_ship1].to_sym, params[:orientation1].to_sym) if params[:place_ship1] != nil
+     $player.board.place(@ship2, params[:place_ship2].to_sym, params[:orientation2].to_sym) if params[:place_ship2] != nil
+     @ship1_position = params[:place_ship1]
+    #  session[:orientation1] = params[:orientation1]
+    #  session[:ship_2_position] = params[:place_ship2]
+    #  session[:orientation2] = params[:orientation2]
      erb :place
    end
 
