@@ -1,11 +1,12 @@
 require 'sinatra/base'
 require_relative 'game'
-
+require_relative 'board'
+require_relative '../game_setup'
 
 class BattleshipsWeb < Sinatra::Base
   set :views, proc {File.join(root, '..', 'views')}
 
-  # GAME = Game.new
+  GAME = Game.new
 
   get '/' do
     erb :index
@@ -21,25 +22,25 @@ class BattleshipsWeb < Sinatra::Base
     erb :no_name
   end
 
+  get '/board' do
+    @board = Board.new(Cell)
+    @board.print_to_html
+    @ship = Ship.new(5)
+    @ship = @board.place(@ship, :E5, :horizontally)
+    erb :board
+  end
 
 
 
-  # get '/newgame' do
-  #   "What's your name?"
-  #   @visitor = params[:name]
-  #   if @visitor == nil
-  #     erb :no_name
-  #   else
-  #     erb :player1
-  #   end
-  # end
 
-  # get '/add' do
-  #   number_1 = params[:number_1]
-  #   number_2 = params[:number_2]
-  #   @result = Calculator.add(number_1, number_2)
-  #   erb :result
-  # end
+
+
+  get '/add' do
+    number_1 = params[:number_1] = 33
+    number_2 = params[:number_2] = 44
+    @result = Calculator.add(number_1, number_2)
+    erb :result
+  end
 
 # get '/new_game' do
 #   erb :new_game
