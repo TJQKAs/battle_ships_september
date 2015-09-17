@@ -1,3 +1,5 @@
+require_relative 'cell'
+
 class Board
 	attr_reader :grid
 
@@ -11,15 +13,12 @@ class Board
 		end
 	end
 
-def print_to_html
-	@grid
-end
-
 	def place(ship, coord, orientation = :horizontally)
 		coords = [coord]
 		(ship.size - 1).times{coords << next_coord(coords.last, orientation)}
 		put_on_grid_if_possible(coords, ship)
 	end
+
 
 	def floating_ships?
 		ships.any?(&:floating?)
