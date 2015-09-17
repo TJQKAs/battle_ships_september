@@ -1,3 +1,6 @@
+require_relative 'ship'
+require_relative 'water'
+
 class Cell
 	attr_accessor :content
 	def initialize

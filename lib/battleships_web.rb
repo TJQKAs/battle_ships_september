@@ -17,12 +17,14 @@ class BattleshipsWeb < Sinatra::Base
     erb :player_registered
   end
 
-  get '/no_name' do
-    erb :no_name
-  end
-
-
-
+  get '/board' do
+     @board = Board.new(Cell)
+     session[:board] = @board.print_to_html
+     @ship = Ship.new(5)
+     @ship = @board.place(@ship, :E5, :horizontally)
+     @printed_board = session[:board]
+     erb :place
+   end
 
   # get '/newgame' do
   #   "What's your name?"
