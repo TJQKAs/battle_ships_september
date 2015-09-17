@@ -13,7 +13,7 @@
     <%end%>
   </section>
   <aside style='padding-left: 10px; float: left;'>
-    <% unless ships.counter == 2 %>
+    <% unless $player.board.ships_count == 2 %>
       <% if @ship1_position == nil %>
         <form action='/board' method='get'>
           Place Ship 1
@@ -37,7 +37,7 @@
         <p>Ship Placed</p>
       <% end %>
     <% else %>
-      puts a button to link to firing player_registered
+      puts a button to link to firing
     <% end %>
   </aside>
 </body>
